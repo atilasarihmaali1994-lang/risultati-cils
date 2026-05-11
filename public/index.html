@@ -1,61 +1,264 @@
-const express = require("express");
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+<title>Università per Stranieri di Siena - Risultati Esami CILS</title>
 
-app.use(express.json());
-app.use(express.static("public"));
+<style>
+body{
+    margin:0;
+    background:#dcdcdc;
+    font-family:Arial, Helvetica, sans-serif;
+    color:#000;
+}
 
-const utenti = [
-  {
-    matricola: "778581",
-    dataNascita: "1975-07-31",
-    file: "/files/documento.pdf"
-  },
-  {
-    matricola: "523748",
-    dataNascita: "1997-08-07",
-    file: "/files/shaker-ali.pdf"
-  },
-  {
-    matricola: "523749",
-    dataNascita: "1996-06-12",
-    file: "/files/shaker-mohamed.pdf"
-  },
-  {
-    matricola: "523750",
-    dataNascita: "1981-07-04",
-    file: "/files/moustafa.pdf"
-  },
-  {
-    matricola: "523753",
-    dataNascita: "1993-08-05",
-    file: "/files/hegab.pdf"
-  }
-];
+.wrapper{
+    width:100%;
+    text-align:center;
+    margin-top:25px;
+}
 
-app.post("/api/verifica", (req, res) => {
-  const matricola = (req.body.matricola || "").trim();
-  const dataNascita = (req.body.dataNascita || "").trim();
+.small-title{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
 
-  const utente = utenti.find(u =>
-    u.matricola === matricola &&
-    u.dataNascita === dataNascita
+.big-title{
+    font-size:28px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.line{
+    border-top:1px solid #9a9a9a;
+    margin-bottom:20px;
+}
+
+.form-box{
+    width:520px;
+    margin:auto;
+    text-align:left;
+}
+
+.row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:8px;
+}
+
+label{
+    width:210px;
+    text-align:right;
+    margin-right:8px;
+    font-size:16px;
+}
+
+input{
+    border:1px solid #7f7f7f;
+    height:28px;
+    font-size:16px;
+    padding:3px 5px;
+    box-sizing:border-box;
+}
+
+.matricola{
+    width:120px;
+}
+
+.day{
+    width:55px;
+}
+
+.month{
+    width:55px;
+}
+
+.year{
+    width:70px;
+}
+
+.math{
+    width:80px;
+}
+
+button{
+    border:1px solid #777;
+    background:#ececec;
+    padding:4px 15px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+button:hover{
+    background:#dddddd;
+}
+
+.button-row{
+    text-align:center;
+    margin-top:10px;
+}
+
+#message{
+    margin-top:20px;
+    text-align:center;
+}
+
+.download{
+    display:inline-block;
+    margin-top:12px;
+    padding:8px 16px;
+    background:#ececec;
+    border:1px solid #777;
+    color:black;
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <div class="small-title">
+    Università per Stranieri di Siena
+  </div>
+
+  <div class="big-title">
+    Risultati Esami CILS
+  </div>
+
+  <div class="line"></div>
+
+  <div class="form-box">
+
+    <form id="form">
+
+      <div class="row">
+        <label>Matricola:</label>
+        <input
+          class="matricola"
+          type="text"
+          name="matricola"
+          required>
+      </div>
+
+      <div class="row">
+        <label>Data di Nascita (gg/mm/aaaa):</label>
+
+        <input class="day" type="number" id="day" min="1" max="31" required>
+        &nbsp;/&nbsp;
+        <input class="month" type="number" id="month" min="1" max="12" required>
+        &nbsp;/&nbsp;
+        <input class="year" type="number" id="year" required>
+      </div>
+
+      <div class="row">
+        <label id="mathLabel"></label>
+
+        <input
+          class="math"
+          type="number"
+          id="mathAnswer"
+          required>
+      </div>
+
+      <div class="button-row">
+        <button type="submit">
+          Cerca
+        </button>
+      </div>
+
+    </form>
+
+    <div id="message"></div>
+
+  </div>
+</div>
+
+<script>
+const form = document.getElementById("form");
+const message = document.getElementById("message");
+
+const n1 = Math.floor(Math.random() * 5) + 1;
+const n2 = Math.floor(Math.random() * 5) + 1;
+const result = n1 + n2;
+
+document.getElementById("mathLabel").innerText =
+  `Calcola ${n1} + ${n2}`;
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const answer = parseInt(
+    document.getElementById("mathAnswer").value
   );
 
-  if (!utente) {
-    return res.status(401).json({
-      ok: false,
-      message: "Dati non validi."
-    });
+  if (answer !== result) {
+    message.innerHTML =
+      "<span style='color:red'>Calcolo errato.</span>";
+    return;
   }
 
-  res.json({
-    ok: true,
-    downloadUrl: utente.file
-  });
-});
+  const day = document
+    .getElementById("day")
+    .value
+    .padStart(2, "0");
 
-app.listen(PORT, () => {
-  console.log("Server avviato sulla porta " + PORT);
+  const month = document
+    .getElementById("month")
+    .value
+    .padStart(2, "0");
+
+  const year = document
+    .getElementById("year")
+    .value;
+
+  const dataNascita = `${year}-${month}-${day}`;
+
+  const matricola = document
+    .querySelector("[name=matricola]")
+    .value;
+
+  try {
+    const res = await fetch("/api/verifica", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        matricola,
+        dataNascita
+      })
+    });
+
+    const data = await res.json();
+
+    if (!data.ok) {
+      throw new Error();
+    }
+
+    message.innerHTML = `
+      <div style="margin-top:10px;">
+        Accesso completato
+        <br><br>
+        <a class="download"
+           href="${data.downloadUrl}"
+           download>
+           Scarica documento
+        </a>
+      </div>
+    `;
+
+  } catch {
+    message.innerHTML =
+      "<span style='color:red'>Dati non validi.</span>";
+  }
 });
+</script>
+
+</body>
+</html>
