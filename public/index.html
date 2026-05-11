@@ -26,14 +26,14 @@
 
     .title {
       color: #003b79;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: bold;
       margin: 0;
     }
 
     .subtitle {
       color: #8b0000;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold;
       margin-top: 6px;
     }
@@ -107,6 +107,12 @@
       font-size: 16px;
     }
 
+    .message.error {
+      background: #fff0f0;
+      border-color: #e2b2b2;
+      color: #8b0000;
+    }
+
     .download-btn {
       display: inline-block;
       margin-top: 14px;
@@ -169,8 +175,8 @@
           </div>
 
           <div class="row">
-            <label for="codice">Codice documento</label>
-            <input id="codice" name="codice" required>
+            <label for="matricola">Matricola</label>
+            <input id="matricola" name="matricola" required>
           </div>
 
           <div class="btn-wrap">
@@ -196,6 +202,7 @@
       e.preventDefault();
 
       message.style.display = "block";
+      message.className = "message";
       message.innerHTML = "Verifica dati in corso...";
 
       const payload = Object.fromEntries(
@@ -215,13 +222,12 @@
 
         if (!res.ok || !data.ok) {
           throw new Error(
-            data.message || "Errore durante la verifica."
+            data.message || "Dati non validi."
           );
         }
 
         message.innerHTML = `
           Accesso completato.<br><br>
-
           <a class="download-btn"
              href="${data.downloadUrl}"
              download>
@@ -230,6 +236,7 @@
         `;
 
       } catch (err) {
+        message.className = "message error";
         message.innerHTML = err.message;
       }
     });
