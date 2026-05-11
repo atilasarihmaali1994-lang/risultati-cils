@@ -1,246 +1,264 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Università per Stranieri di Siena - Risultati Esami CILS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      background: #f5f5f5;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #222;
-    }
+<title>Università per Stranieri di Siena - Risultati Esami CILS</title>
 
-    .header {
-      background: #ffffff;
-      border-bottom: 1px solid #d9d9d9;
-      padding: 22px 0;
-    }
+<style>
+body{
+    margin:0;
+    background:#dcdcdc;
+    font-family:Arial, Helvetica, sans-serif;
+    color:#000;
+}
 
-    .container {
-      width: min(980px, calc(100% - 30px));
-      margin: 0 auto;
-    }
+.wrapper{
+    width:100%;
+    text-align:center;
+    margin-top:25px;
+}
 
-    .title {
-      color: #003b79;
-      font-size: 24px;
-      font-weight: bold;
-      margin: 0;
-    }
+.small-title{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
 
-    .subtitle {
-      color: #8b0000;
-      font-size: 20px;
-      font-weight: bold;
-      margin-top: 6px;
-    }
+.big-title{
+    font-size:28px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
 
-    .panel {
-      background: #fff;
-      border: 1px solid #d4d4d4;
-      margin-top: 28px;
-    }
+.line{
+    border-top:1px solid #9a9a9a;
+    margin-bottom:20px;
+}
 
-    .panel-header {
-      background: #003b79;
-      color: white;
-      padding: 14px 18px;
-      font-size: 18px;
-      font-weight: bold;
-    }
+.form-box{
+    width:520px;
+    margin:auto;
+    text-align:left;
+}
 
-    .panel-body {
-      padding: 28px;
-    }
+.row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:8px;
+}
 
-    .row {
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 14px;
-      margin-bottom: 16px;
-      align-items: center;
-    }
+label{
+    width:210px;
+    text-align:right;
+    margin-right:8px;
+    font-size:16px;
+}
 
-    label {
-      font-weight: bold;
-      font-size: 16px;
-    }
+input{
+    border:1px solid #7f7f7f;
+    height:28px;
+    font-size:16px;
+    padding:3px 5px;
+    box-sizing:border-box;
+}
 
-    input {
-      width: 100%;
-      max-width: 430px;
-      padding: 11px;
-      border: 1px solid #b8b8b8;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
+.matricola{
+    width:120px;
+}
 
-    button {
-      background: #003b79;
-      color: white;
-      border: 0;
-      padding: 12px 22px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-    }
+.day{
+    width:55px;
+}
 
-    button:hover {
-      background: #0052a3;
-    }
+.month{
+    width:55px;
+}
 
-    .btn-wrap {
-      margin-left: 234px;
-      margin-top: 20px;
-    }
+.year{
+    width:70px;
+}
 
-    .message {
-      display: none;
-      margin-top: 24px;
-      padding: 18px;
-      background: #edf8ee;
-      border: 1px solid #c2e1c5;
-      color: #1f6b2b;
-      font-size: 16px;
-    }
+.math{
+    width:80px;
+}
 
-    .message.error {
-      background: #fff0f0;
-      border-color: #e2b2b2;
-      color: #8b0000;
-    }
+button{
+    border:1px solid #777;
+    background:#ececec;
+    padding:4px 15px;
+    cursor:pointer;
+    font-size:15px;
+}
 
-    .download-btn {
-      display: inline-block;
-      margin-top: 14px;
-      text-decoration: none;
-      background: #003b79;
-      color: white;
-      padding: 12px 20px;
-      font-weight: bold;
-    }
+button:hover{
+    background:#dddddd;
+}
 
-    @media (max-width: 700px) {
-      .row {
-        grid-template-columns: 1fr;
-      }
+.button-row{
+    text-align:center;
+    margin-top:10px;
+}
 
-      .btn-wrap {
-        margin-left: 0;
-      }
+#message{
+    margin-top:20px;
+    text-align:center;
+}
 
-      input {
-        max-width: none;
-      }
-    }
-  </style>
+.download{
+    display:inline-block;
+    margin-top:12px;
+    padding:8px 16px;
+    background:#ececec;
+    border:1px solid #777;
+    color:black;
+    text-decoration:none;
+}
+</style>
 </head>
 
 <body>
 
-  <header class="header">
-    <div class="container">
-      <h1 class="title">Università per Stranieri di Siena</h1>
-      <div class="subtitle">Risultati Esami CILS</div>
-    </div>
-  </header>
+<div class="wrapper">
 
-  <main class="container">
+  <div class="small-title">
+    Università per Stranieri di Siena
+  </div>
 
-    <section class="panel">
-      <div class="panel-header">
-        Inserimento dati
+  <div class="big-title">
+    Risultati Esami CILS
+  </div>
+
+  <div class="line"></div>
+
+  <div class="form-box">
+
+    <form id="form">
+
+      <div class="row">
+        <label>Matricola:</label>
+        <input
+          class="matricola"
+          type="text"
+          name="matricola"
+          required>
       </div>
 
-      <div class="panel-body">
+      <div class="row">
+        <label>Data di Nascita (gg/mm/aaaa):</label>
 
-        <form id="form">
-
-          <div class="row">
-            <label for="cognome">Cognome</label>
-            <input id="cognome" name="cognome" required>
-          </div>
-
-          <div class="row">
-            <label for="nome">Nome</label>
-            <input id="nome" name="nome" required>
-          </div>
-
-          <div class="row">
-            <label for="dataNascita">Data di nascita</label>
-            <input id="dataNascita" name="dataNascita" type="date" required>
-          </div>
-
-          <div class="row">
-            <label for="matricola">Matricola</label>
-            <input id="matricola" name="matricola" required>
-          </div>
-
-          <div class="btn-wrap">
-            <button type="submit">
-              Accedi al documento
-            </button>
-          </div>
-
-        </form>
-
-        <div id="message" class="message"></div>
-
+        <input class="day" type="number" id="day" min="1" max="31" required>
+        &nbsp;/&nbsp;
+        <input class="month" type="number" id="month" min="1" max="12" required>
+        &nbsp;/&nbsp;
+        <input class="year" type="number" id="year" required>
       </div>
-    </section>
 
-  </main>
+      <div class="row">
+        <label id="mathLabel"></label>
 
-  <script>
-    const form = document.getElementById("form");
-    const message = document.getElementById("message");
+        <input
+          class="math"
+          type="number"
+          id="mathAnswer"
+          required>
+      </div>
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+      <div class="button-row">
+        <button type="submit">
+          Cerca
+        </button>
+      </div>
 
-      message.style.display = "block";
-      message.className = "message";
-      message.innerHTML = "Verifica dati in corso...";
+    </form>
 
-      const payload = Object.fromEntries(
-        new FormData(form).entries()
-      );
+    <div id="message"></div>
 
-      try {
-        const res = await fetch("/api/verifica", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(payload)
-        });
+  </div>
+</div>
 
-        const data = await res.json();
+<script>
+const form = document.getElementById("form");
+const message = document.getElementById("message");
 
-        if (!res.ok || !data.ok) {
-          throw new Error(
-            data.message || "Dati non validi."
-          );
-        }
+const n1 = Math.floor(Math.random() * 5) + 1;
+const n2 = Math.floor(Math.random() * 5) + 1;
+const result = n1 + n2;
 
-        message.innerHTML = `
-          Accesso completato.<br><br>
-          <a class="download-btn"
-             href="${data.downloadUrl}"
-             download>
-             Scarica documento
-          </a>
-        `;
+document.getElementById("mathLabel").innerText =
+  `Calcola ${n1} + ${n2}`;
 
-      } catch (err) {
-        message.className = "message error";
-        message.innerHTML = err.message;
-      }
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const answer = parseInt(
+    document.getElementById("mathAnswer").value
+  );
+
+  if (answer !== result) {
+    message.innerHTML =
+      "<span style='color:red'>Calcolo errato.</span>";
+    return;
+  }
+
+  const day = document
+    .getElementById("day")
+    .value
+    .padStart(2, "0");
+
+  const month = document
+    .getElementById("month")
+    .value
+    .padStart(2, "0");
+
+  const year = document
+    .getElementById("year")
+    .value;
+
+  const dataNascita = `${year}-${month}-${day}`;
+
+  const matricola = document
+    .querySelector("[name=matricola]")
+    .value;
+
+  try {
+    const res = await fetch("/api/verifica", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        matricola,
+        dataNascita
+      })
     });
-  </script>
+
+    const data = await res.json();
+
+    if (!data.ok) {
+      throw new Error();
+    }
+
+    message.innerHTML = `
+      <div style="margin-top:10px;">
+        Accesso completato
+        <br><br>
+        <a class="download"
+           href="${data.downloadUrl}"
+           download>
+           Scarica documento
+        </a>
+      </div>
+    `;
+
+  } catch {
+    message.innerHTML =
+      "<span style='color:red'>Dati non validi.</span>";
+  }
+});
+</script>
 
 </body>
 </html>
