@@ -1,7 +1,7 @@
 {
-  "name": "sito-download-documento",
+  "name": "risultati-cils",
   "version": "1.0.0",
-  "description": "Pagina privata per inserire dati e scaricare un documento",
+  "description": "Risultati Esami CILS",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
